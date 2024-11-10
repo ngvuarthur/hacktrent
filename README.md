@@ -1,8 +1,8 @@
-# hacktrent
+# Mindful
 # Recipe Optimizer
 The Recipe Optimizer is a Flask-based web application that allows users to adjust recipes according to dietary restrictions and portion sizes. The app enables users to select recipes, modify ingredient quantities, and check for dietary compliance (such as vegetarian, vegan, gluten-free, etc.).
 
-Features
+#Features
 Recipe Scaling: Adjust ingredient quantities based on the number of adult and child portions.
 Dietary Restriction Checks: Filter recipes based on specific dietary restrictions.
 Ingredient Unit Conversion: Automatically convert ingredient units based on a predefined conversion table.
