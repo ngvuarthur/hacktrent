@@ -1,4 +1,4 @@
-# Mindful
+# Mind Full
 by Pari Chauhan, Vu Anh Thu Nguyen, Gawshitha Parasuraman
 # Recipe Optimizer
 
