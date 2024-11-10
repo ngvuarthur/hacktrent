@@ -4,80 +4,141 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Portion Optimizer</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Sustainable Portion Optimizer for Recipes</h1>
-    <form id="recipeForm">
-        <label for="recipe_name">Recipe Name:</label>
-        <input type="text" id="recipe_name" name="recipe_name" required><br><br>
+    <header>
+        <h1>Sustainable Portion Optimizer for Recipes</h1>
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+                <img src="./img/applepie.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="./img/burger.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="./img/pizza.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="./img/food2.jpg" style="width:100%">
+            </div>
+            <div class="mySlides fade">
+                <img src="./img/food1.jpg" style="width:100%">
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <form id="recipeForm" onsubmit="event.preventDefault(); validateForm();">
+            <div class="form-container">
+                <label for="recipe_name">Recipe Name:</label>
+                <input type="text" id="recipe_name" name="recipe_name" required>
 
-        <label for="adult_portions">Adult Portions:</label>
-        <input type="number" id="adult_portions" name="adult_portions" required><br><br>
+                <label for="adult_portions">Adult Portions:</label>
+                <input type="number" id="adult_portions" name="adult_portions" required>
 
-        <label for="child_portions">Child Portions:</label>
-        <input type="number" id="child_portions" name="child_portions" required><br><br>
+                <label for="child_portions">Child Portions:</label>
+                <input type="number" id="child_portions" name="child_portions" required>
 
-        <h2>Dietary Restrictions:</h2>
-        <label>
-            <input type="checkbox" id="vegetarian" name="dietary_restrictions" value="vegetarian">
-            Vegetarian
-        </label><br>
-        <label>
-            <input type="checkbox" id="vegan" name="dietary_restrictions" value="vegan">
-            Vegan
-        </label><br>
-        <label>
-            <input type="checkbox" id="peanut_free" name="dietary_restrictions" value="peanut_free">
-            Peanut-Free
-        </label><br>
-        <label>
-            <input type="checkbox" id="gluten_free" name="dietary_restrictions" value="gluten_free">
-            Gluten-Free
-        </label><br>
-        <label>
-            <input type="checkbox" id="lactose_free" name="dietary_restrictions" value="lactose_free">
-            Lactose-Free
-        </label><br><br>
+                <h3>Dietary Restrictions:</h3>
+                <label><input type="checkbox" id="vegetarian"> Vegetarian</label>
+                <label><input type="checkbox" id="vegan"> Vegan</label>
+                <label><input type="checkbox" id="peanut_free"> Peanut-Free</label>
+                <label><input type="checkbox" id="gluten_free"> Gluten-Free</label>
+                <label><input type="checkbox" id="lactose_free"> Lactose-Free</label>
+                <label><input type="checkbox" id="kosher"> Kosher</label>
+                <label><input type="checkbox" id="lowSodium"> Low-Sodium</label>
+                <label><input type="checkbox" id="none"> None</label>
 
-        <button type="button" onclick="submitForm()">Submit</button>
-    </form>
+                <button type="submit">Optimize Recipe</button>
+            </div>
+        </form>
 
-    <h2>Optimized Recipe:</h2>
-    <div id="result"></div>
+        <h2>Optimized Recipe:</h2>
+        <div id="result"></div>
 
-    <script>
-        async function submitForm() {
-            const formData = {
-                recipe_name: document.getElementById("recipe_name").value,
-                adult_portions: document.getElementById("adult_portions").value,
-                child_portions: document.getElementById("child_portions").value,
-                dietary_restrictions: {
-                    vegetarian: document.getElementById("vegetarian").checked,
-                    vegan: document.getElementById("vegan").checked,
-                    peanut_free: document.getElementById("peanut_free").checked,
-                    gluten_free: document.getElementById("gluten_free").checked,
-                    lactose_free: document.getElementById("lactose_free").checked
-                }
-            };
+        <script>
+            function validateForm() {
+                const restrictions = document.querySelectorAll("input[type='checkbox']");
+                const noneCheckbox = document.getElementById("none");
 
-            try {
-                const response = await fetch("/optimize_recipe", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(formData),
+                let isSelected = false;
+                restrictions.forEach((checkbox) => {
+                    if (checkbox.checked) isSelected = true;
                 });
 
-                if (response.ok) {
-                    const result = await response.json();
-                    document.getElementById("result").innerHTML = result.html;
-                } else {
-                    document.getElementById("result").innerHTML = `<p>Error: ${response.statusText}</p>`;
+                if (!isSelected) {
+                    alert("Please select at least one restriction or 'None'.");
+                    return false;
                 }
-            } catch (error) {
-                document.getElementById("result").innerHTML = `<p>Error: ${error.message}</p>`;
+
+                if (noneCheckbox.checked) {
+                    restrictions.forEach((checkbox) => {
+                        if (checkbox !== noneCheckbox) checkbox.checked = false;
+                    });
+                } else {
+                    noneCheckbox.checked = false;
+                }
+
+                submitForm();
+                return true;
             }
+
+            async function submitForm() {
+                const formData = {
+                    recipe_name: document.getElementById("recipe_name").value,
+                    adult_portions: document.getElementById("adult_portions").value,
+                    child_portions: document.getElementById("child_portions").value,
+                    dietary_restrictions: {
+                        vegetarian: document.getElementById("vegetarian").checked,
+                        vegan: document.getElementById("vegan").checked,
+                        peanut_free: document.getElementById("peanut_free").checked,
+                        gluten_free: document.getElementById("gluten_free").checked,
+                        lactose_free: document.getElementById("lactose_free").checked,
+                        kosher: document.getElementById("kosher").checked,
+                        lowSodium: document.getElementById("lowSodium").checked,
+                        none: document.getElementById("none").checked
+                    }
+                };
+
+                try {
+                    const response = await fetch("/optimize_recipe", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    if (response.ok) {
+                        const result = await response.json();
+                        document.getElementById("result").innerHTML = result.html;
+                    } else {
+                        document.getElementById("result").innerHTML = `<p>Error: ${response.statusText}</p>`;
+                    }
+                } catch (error) {
+                    document.getElementById("result").innerHTML = `<p>Error: ${error.message}</p>`;
+                }
+            }
+        </script>
+    </main>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+        
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}
+            slides[slideIndex - 1].style.display = "block";
+            setTimeout(showSlides, 3000); 
         }
     </script>
 </body>

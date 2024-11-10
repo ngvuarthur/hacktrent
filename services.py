@@ -5,16 +5,17 @@ def load_recipes_from_excel(file_path):
     df = pd.read_excel(file_path)
 
     for _, row in df.iterrows():
-        recipe_name = row['Recipe Name'].strip().lower()
+        recipe_name = row['title'].strip().lower()
         ingredients = [
             {"name": ingredient.strip().lower(), "weight": weight, "unit": unit}
             for ingredient, weight, unit in zip(
-                row['Ingredients'].split(','), row['Weights'].split(','), row['Units'].split(',')
+                row['ingredients'].split(','), row['weight'].split(','), row['food'].split(',')
+
             )
         ]
         recipes[recipe_name] = {
             "recipe_name": recipe_name.title(),
-            "original_total_weight": row['Total Weight'],
+            "original_total_weight": row['total recipe weight(g)'],
             "ingredients": ingredients
         }
     
@@ -23,4 +24,4 @@ def load_recipes_from_excel(file_path):
 def search_recipe_online(name, recipes):
     # Convert the recipe name to lowercase for case-insensitive lookup
     name = name.strip().lower()
-    return recipes.get(name, None)
+    return recipes.get(name, None)
