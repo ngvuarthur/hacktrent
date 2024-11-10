@@ -24,7 +24,7 @@ Recipe Optimizer
 ├── recipedatabase.xlsx          # Recipe dataset in Excel format
 ├── foodrestrictiondatabase.xlsx # Dietary restriction data in Excel format
 ├── unitconversiondata.xlsx      # Unit conversion data in Excel format
-└── run.py                       # Run file to start the Flask app
+└── run.py                       # Run file to start the Flask app ```
 
 ## Installation
 
