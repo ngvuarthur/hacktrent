@@ -12,20 +12,19 @@ The Recipe Optimizer is a Flask-based web application that allows users to adjus
 
 ## Project Structure
 
-\`\`\`plaintext
+```plaintext
 Recipe Optimizer
-├── routes.py           # Main Flask routes to handle requests and responses
-├── calculator.py       # Functions for calculating adjusted recipe portions and converting units
-├── services.py         # Service functions for loading and searching recipes
-├── models.py           # Recipe class definition and data model for recipes
-├── utils.py            # Helper functions for input validation
+├── routes.py                    # Main Flask routes to handle requests and responses
+├── calculator.py                # Functions for calculating adjusted recipe portions and converting units
+├── services.py                  # Service functions for loading and searching recipes
+├── models.py                    # Recipe class definition and data model for recipes
+├── utils.py                     # Helper functions for input validation
 ├── templates
-│   └── home.html       # Frontend HTML template for user interaction
-├── recipedatabase.xlsx # Recipe dataset in Excel format
+│   └── home.html                # Frontend HTML template for user interaction
+├── recipedatabase.xlsx          # Recipe dataset in Excel format
 ├── foodrestrictiondatabase.xlsx # Dietary restriction data in Excel format
 ├── unitconversiondata.xlsx      # Unit conversion data in Excel format
-└── run.py              # Run file to start the Flask app
-\`\`\`
+└── run.py                       # Run file to start the Flask app
 
 ## Installation
 
