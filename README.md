@@ -1,4 +1,5 @@
 # Mindful
+by Pari Chauhan, Vu Anh Thu Nguyen, Gawshitha Parasuraman
 # Recipe Optimizer
 
 The Recipe Optimizer is a Flask-based web application that allows users to adjust recipes according to dietary restrictions and portion sizes. The app enables users to select recipes, modify ingredient quantities, and check for dietary compliance (such as vegetarian, vegan, gluten-free, etc.).
