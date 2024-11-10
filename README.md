@@ -24,25 +24,26 @@ Recipe Optimizer
 ├── recipedatabase.xlsx          # Recipe dataset in Excel format
 ├── foodrestrictiondatabase.xlsx # Dietary restriction data in Excel format
 ├── unitconversiondata.xlsx      # Unit conversion data in Excel format
-└── run.py                       # Run file to start the Flask app ```
+└── run.py                       # Run file to start the Flask app
+```
 
-## Installation
+# Installation
 
-1. **Clone the repository**:
-   \`\`\`bash
-   git clone <repository_url>
-   cd recipe-optimizer
-   \`\`\`
+## Clone the repository:
+```bash
+git clone <repository_url>
+cd recipe-optimizer
+```
 
 2. **Install dependencies**:
-   \`\`\`bash
+   ```bash
    pip install -r requirements.txt
-   \`\`\`
+   ```
 
 3. **Run the Application**:
-   \`\`\`bash
+   ```bash
    python run.py
-   \`\`\`
+   ```
 
 4. **Access the Application**:
    Open a web browser and go to \`http://localhost:5000\`.
