@@ -29,7 +29,7 @@ Recipe Optimizer
 
 # Installation
 
-## Clone the repository:
+1. **Clone the repository**:
 ```bash
 git clone <repository_url>
 cd recipe-optimizer
